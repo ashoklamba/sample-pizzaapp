@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slice Station</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div class="hero__copy">
+          <p class="eyebrow">Slice Station</p>
+          <h1>Build a pizza that crackles.</h1>
+          <p class="lede">
+            Seasonal toppings, fast-fired crust, and a dashboard that turns cravings
+            into orders.
+          </p>
+          <div class="hero__meta">
+            <div>
+              <span class="hero__label">Open hours</span>
+              <span class="hero__value">11:00 - 23:00</span>
+            </div>
+            <div>
+              <span class="hero__label">Pickup</span>
+              <span class="hero__value">12 min avg</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero__card">
+          <p class="card__title">Tonight's Mood</p>
+          <h2>Glow Crust</h2>
+          <p>Charred edges, chewy center, brushed with chili honey.</p>
+          <div class="card__bar"></div>
+        </div>
+      </header>
+
+      <section class="menu">
+        <div class="menu__header">
+          <h2>Featured Pizzas</h2>
+          <p>Pick a base, dial up the heat, and checkout in under a minute.</p>
+        </div>
+        <div class="pizza-grid" id="pizza-grid">
+          <div class="pizza-card skeleton"></div>
+          <div class="pizza-card skeleton"></div>
+          <div class="pizza-card skeleton"></div>
+        </div>
+      </section>
+
+      <section class="order">
+        <div class="order__form">
+          <h2>Place an Order</h2>
+          <form id="order-form">
+            <label>
+              Name
+              <input type="text" name="customer_name" placeholder="Avery" required />
+            </label>
+            <label>
+              Pizza
+              <select name="pizza_id" id="pizza-select" required></select>
+            </label>
+            <label>
+              Quantity
+              <input type="number" name="quantity" min="1" value="1" required />
+            </label>
+            <button type="submit">Fire it up</button>
+          </form>
+        </div>
+        <aside class="order__receipt" id="order-receipt">
+          <h3>Order status</h3>
+          <p>Pick a pizza and get ready to feast.</p>
+        </aside>
+      </section>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
