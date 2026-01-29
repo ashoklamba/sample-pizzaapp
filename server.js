@@ -52,6 +52,57 @@ app.post("/api/orders", async (req, res) => {
   }
 });
 
+app.get("/api/orders", async (_req, res) => {
+  try {
+    const { rows } = await pool.query(
+      `SELECT orders.id,
+              orders.customer_name,
+              orders.pizza_id,
+              pizzas.name AS pizza_name,
+              orders.quantity,
+              orders.total_cents,
+              orders.created_at
+       FROM orders
+       JOIN pizzas ON orders.pizza_id = pizzas.id
+       ORDER BY orders.created_at DESC`
+    );
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to load orders." });
+  }
+});
+
+app.get("/api/orders/:id", async (req, res) => {
+  const orderId = Number(req.params.id);
+  if (!Number.isInteger(orderId) || orderId <= 0) {
+    return res.status(400).json({ error: "Invalid order id." });
+  }
+
+  try {
+    const { rows } = await pool.query(
+      `SELECT orders.id,
+              orders.customer_name,
+              orders.pizza_id,
+              pizzas.name AS pizza_name,
+              orders.quantity,
+              orders.total_cents,
+              orders.created_at
+       FROM orders
+       JOIN pizzas ON orders.pizza_id = pizzas.id
+       WHERE orders.id = $1`,
+      [orderId]
+    );
+
+    if (!rows.length) {
+      return res.status(404).json({ error: "Order not found." });
+    }
+
+    res.json(rows[0]);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to load order." });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Pizza app running on http://localhost:${PORT}`);
 });

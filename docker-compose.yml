@@ -20,6 +20,19 @@ services:
       DATABASE_URL: "postgres://postgres:postgres@db:5432/pizzaapp"
     depends_on:
       - db
+  app-dev:
+    profiles:
+      - dev
+    build:
+      context: .
+      args:
+        INSTALL_DEV: "true"
+    ports:
+      - "3001:3000"
+    environment:
+      DATABASE_URL: "postgres://postgres:postgres@db:5432/pizzaapp"
+    depends_on:
+      - db
 
 volumes:
   postgres_data:

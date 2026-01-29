@@ -5,10 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "node server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "playwright test",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "express": "^4.19.2",
     "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.1"
   }
 }
