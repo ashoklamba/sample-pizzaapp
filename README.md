@@ -54,7 +54,6 @@ docker compose up --build
 
 1. Install Playwright (and browsers):
 
-
 npm install
 npx playwright install
 
